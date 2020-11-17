@@ -1,28 +1,21 @@
+/** @file */
+
 #pragma once
+#include "utils.hpp"
 #include <vector>
 
-/**
- * A Class for a Point in 2-D Space
- */
-class Point {
-  public:
-    /// The x coordinate of the Point
-    long double x;
-    /// The y coordinate of the Point
-    long double y;
-
-    /**
-     * Constructor. Initializes the coordinates to the passed parameters
-     *
-     * @param x The x coordinate
-     * @param y The y coordinate
-     */
-    Point(long double x, long double y);
-
-    /**
-     * Default Constructor
-     */
-    Point();
+/// Enum type for the type of vertex
+enum VertexType {
+    /// Start Vertex
+    START,
+    /// End Vertex
+    END,
+    /// Split Vertex
+    SPLIT,
+    /// Merge Vertex
+    MERGE,
+    /// Regular Vertex
+    REGULAR
 };
 
 /**
@@ -62,8 +55,6 @@ class HalfEdge {
     HalfEdge *next;
     /// Pointer to previous hald edge
     HalfEdge *prev;
-    /// Face which the half edge is incident on
-    Face *face;
 
     /**
      * Default Constructor
@@ -75,7 +66,7 @@ class HalfEdge {
      *
      * @param origin Any incident edge of the face
      */
-    HalfEdge(Vertex *origin, Face *face);
+    HalfEdge(Vertex *origin);
 };
 
 /**
@@ -107,10 +98,21 @@ class DCEL {
     /// List of Vertices in the DCEL
     std::vector<Vertex> vertices;
 
+    /// List of Faces in the DCEL
+    std::vector<Face> faces;
+
+    /// List of HalfEdges in the DCEL
+    std::vector<HalfEdge> half_edges;
+
     /**
      * Constructor. Makes a DCEL from a vector of points of a polygon.
      *
      * @param points List of points of a polygon in clockwise order
      */
     DCEL(std::vector<Point> points);
+
+    /**
+     * Adds an edge to the DCEL
+     */
+    void addEdge();
 };
