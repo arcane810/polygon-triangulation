@@ -18,6 +18,9 @@ enum VertexType {
     REGULAR
 };
 
+class HalfEdge;
+class Edge;
+
 /**
  * Vertex Class for DCEL
  */

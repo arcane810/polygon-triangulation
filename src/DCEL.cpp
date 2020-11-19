@@ -4,6 +4,10 @@
 
 Face::Face(HalfEdge *half_edge) : half_edge(half_edge) {}
 
+Face::Face() {}
+
+Vertex::Vertex() {}
+
 Vertex::Vertex(Point p) : point(p) {}
 
 HalfEdge::HalfEdge(Vertex *origin) : origin(origin) {}
