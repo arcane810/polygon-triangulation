@@ -96,7 +96,8 @@ void handleVertex(
                           diagonals);
         break;
     case MERGE:
-        handleMergeVertex(event_point, binary_search_tree, helper);
+        handleMergeVertex(event_point, dcel, binary_search_tree, helper,
+                          diagonals);
         break;
     case REGULAR:
         handleRegularVertex(event_point, binary_search_tree, helper);
@@ -139,9 +140,35 @@ void handleSplitVertex(
     helper[event_point.index] = event_point.index;
     helper[(*ejp).second] = event_point.index;
 }
-void handleMergeVertex(EventPoint &event_point,
-                       std::set<Edge, CompareEdges> &binary_search_tree,
-                       std::vector<Vertex *> &helper) {}
+
+void handleMergeVertex(
+    EventPoint &event_point, DCEL &dcel,
+    std::set<std::pair<Edge *, int>, CompareEdges> &binary_search_tree,
+    std::vector<int> &helper, std::vector<std::pair<int, int>> &diagonals) {
+    if (event_point.index > 0 && helper[event_point.index] > -1) {
+        EventPoint helper_e_i_1;
+        helper_e_i_1.vertex = dcel.vertices[helper[event_point.index - 1]];
+        helper_e_i_1.index = helper[event_point.index - 1];
+        if (getVertexType(helper_e_i_1, dcel) == MERGE) {
+            diagonals.push_back(
+                std::make_pair(event_point.index, helper_e_i_1.index));
+            binary_search_tree.erase(std::make_pair(
+                (dcel.edges[event_point.index - 1]), event_point.index - 1));
+        }
+    }
+    auto ejp = (binary_search_tree.lower_bound(
+        std::make_pair(dcel.edges[event_point.index], event_point.index)));
+    ejp--;
+    EventPoint helper_e_j;
+    helper_e_j.vertex = dcel.vertices[helper[(*ejp).second]];
+    helper_e_j.index = helper[(*ejp).second];
+    if (getVertexType(helper_e_j, dcel) == MERGE) {
+        diagonals.push_back(
+            std::make_pair(event_point.index, helper_e_j.index));
+    }
+    helper[(*ejp).second] = event_point.index;
+}
+
 void handleRegularVertex(EventPoint &event_point,
                          std::set<Edge, CompareEdges> &binary_search_tree,
                          std::vector<Vertex *> &helper) {}
