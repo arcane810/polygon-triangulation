@@ -26,8 +26,8 @@ class Vertex {
     /// The point which the Vertex represents
     Point point;
 
-    /// Incident Edge (any edge that originates from this vertex)
-    HalfEdge *edge;
+    /// Incident HalfEdge (any half edge that originates from this vertex)
+    HalfEdge *half_edge;
 
     /**
      * Default Constructor
@@ -55,6 +55,8 @@ class HalfEdge {
     HalfEdge *next;
     /// Pointer to previous hald edge
     HalfEdge *prev;
+    /// Edge to which HalfEdge belongs
+    Edge *edge;
 
     /**
      * Default Constructor
@@ -70,12 +72,35 @@ class HalfEdge {
 };
 
 /**
+ * Half-Edge Class for DCEL
+ */
+class Edge {
+  public:
+    /// Pointer to the origin vertex of the half edge
+    Vertex *v1, *v2;
+    /// Pointer to one of the half edges
+    HalfEdge *half_edge;
+
+    /**
+     * Default Constructor
+     */
+    Edge();
+
+    /**
+     * Constructor.
+     *
+     * @param origin Any incident edge of the face
+     */
+    Edge(Vertex *v1, Vertex *v2, HalfEdge *half_edge);
+};
+
+/**
  * Face Class for DCEL
  */
 class Face {
   public:
     /// A half edge on which incident on face
-    HalfEdge *edge;
+    HalfEdge *half_edge;
 
     /**
      * Default Constructor
@@ -85,9 +110,9 @@ class Face {
     /**
      * Constructor which takes in the incident edge.
      *
-     * @param edge Any incident edge of the face
+     * @param half_edge Any incident edge of the face
      */
-    Face(HalfEdge *edge);
+    Face(HalfEdge *half_edge);
 };
 
 /**
@@ -103,6 +128,9 @@ class DCEL {
 
     /// List of HalfEdges in the DCEL
     std::vector<HalfEdge> half_edges;
+
+    /// List of Edges in the DCEL
+    std::vector<Edge *> edges;
 
     /**
      * Constructor. Makes a DCEL from a vector of points of a polygon.
