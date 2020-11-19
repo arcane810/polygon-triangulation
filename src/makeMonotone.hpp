@@ -4,5 +4,3 @@
 #include <queue>
 
 void makeMonotone(DCEL &dcel);
-
-void handleVertex();
