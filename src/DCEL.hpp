@@ -133,7 +133,7 @@ class DCEL {
     std::vector<HalfEdge> half_edges;
 
     /// List of Edges in the DCEL
-    std::vector<Edge *> edges;
+    std::vector<Edge> edges;
 
     /**
      * Constructor. Makes a DCEL from a vector of points of a polygon.

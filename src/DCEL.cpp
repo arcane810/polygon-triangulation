@@ -1,6 +1,8 @@
 /** @file */
 
 #include "DCEL.hpp"
+#include <iostream>
+using namespace std;
 
 Face::Face(HalfEdge *half_edge) : half_edge(half_edge) {}
 
@@ -58,11 +60,10 @@ DCEL::DCEL(std::vector<Point> points) {
             first_in = &curr_in;
         }
         prev_in = &curr_in;
-
         Edge edge = Edge(&vertices[i], &vertices[(i + 1) % n], &curr_out);
         curr_in.edge = &edge;
         curr_out.edge = &edge;
-        edges.push_back(&edge);
+        edges.push_back(edge);
     }
     prev_out->prev = first_out;
     first_out->next = prev_out;
