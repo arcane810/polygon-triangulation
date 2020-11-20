@@ -3,7 +3,6 @@
 #include <bits/stdc++.h>
 using namespace std;
 #define pb push_back
-#define int long long
 #define ld long double
 #define sz(x) (int)x.size()
 
@@ -14,6 +13,9 @@ int32_t main() {
     ios_base::sync_with_stdio(false);
     cin.tie(0);
 
+    ifstream cin("in1");
+    ofstream cout("out1");
+
     int n;
     cin >> n;
     vector<Point> arr(n);
@@ -23,7 +25,10 @@ int32_t main() {
         arr[i] = Point(x, y);
     }
     DCEL dcel = DCEL(arr);
-    makeMonotone(dcel);
+    vector<pair<int, int>> ans = makeMonotone(dcel);
+    for (auto it : ans) {
+        cout << it.first << " " << it.second << "\n";
+    }
 
     return 0;
 }

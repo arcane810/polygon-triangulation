@@ -77,7 +77,7 @@ void handleEndVertex(
     EventPoint &event_point, DCEL &dcel,
     std::set<std::pair<Edge *, int>, CompareEdges> &binary_search_tree,
     std::vector<int> &helper, std::vector<std::pair<int, int>> &diagonals) {
-    if (event_point.index > 0 && helper[event_point.index] > -1) {
+    if (helper[(event_point.index - 1 + n) % n] > -1) {
         EventPoint helper_e_i_1;
         helper_e_i_1.vertex =
             dcel.vertices[helper[(event_point.index - 1 + n) % n]];
@@ -108,7 +108,7 @@ void handleMergeVertex(
     EventPoint &event_point, DCEL &dcel,
     std::set<std::pair<Edge *, int>, CompareEdges> &binary_search_tree,
     std::vector<int> &helper, std::vector<std::pair<int, int>> &diagonals) {
-    if (event_point.index > 0 && helper[event_point.index] > -1) {
+    if (helper[(event_point.index - 1 + n) % n] > -1) {
         EventPoint helper_e_i_1;
         helper_e_i_1.vertex =
             dcel.vertices[helper[(event_point.index - 1 + n) % n]];
@@ -143,7 +143,7 @@ void handleRegularVertex(
     Vertex next = dcel.vertices[(event_point.index + 1) % n];
     if (event_point.vertex.point.isBelow(prev.point) &&
         prev.point.isBelow(event_point.vertex.point)) {
-        if (event_point.index > 0 && helper[event_point.index] > -1) {
+        if (helper[(event_point.index - 1 + n) % n] > -1) {
             EventPoint helper_e_i_1;
             helper_e_i_1.vertex =
                 dcel.vertices[helper[(event_point.index - 1 + n) % n]];
@@ -209,7 +209,7 @@ void handleVertex(
     }
 }
 
-void makeMonotone(DCEL &dcel) {
+std::vector<std::pair<int, int>> makeMonotone(DCEL &dcel) {
     n = dcel.vertices.size();
     std::priority_queue<EventPoint, std::vector<EventPoint>, CompareVertices>
         event_points;
@@ -229,4 +229,5 @@ void makeMonotone(DCEL &dcel) {
     for (std::pair<int, int> p : diagonals) {
         std::cout << p.first << " " << p.second << "\n";
     }
+    return diagonals;
 }
