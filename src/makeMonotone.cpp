@@ -1,7 +1,6 @@
 /** @file */
 
 #include "makeMonotone.hpp"
-#include <iostream>
 #include <queue>
 #include <set>
 #include <utility>
@@ -184,26 +183,21 @@ void handleVertex(
     VertexType vertex_type = getVertexType(event_point, dcel);
     switch (vertex_type) {
     case START:
-        std::cout << "START VERTEX\n";
         handleStartVertex(event_point, dcel, binary_search_tree, helper);
         break;
     case END:
-        std::cout << "END VERTEX\n";
         handleEndVertex(event_point, dcel, binary_search_tree, helper,
                         diagonals);
         break;
     case SPLIT:
-        std::cout << "SPLIT VERTEX\n";
         handleSplitVertex(event_point, dcel, binary_search_tree, helper,
                           diagonals);
         break;
     case MERGE:
-        std::cout << "MERGE VERTEX\n";
         handleMergeVertex(event_point, dcel, binary_search_tree, helper,
                           diagonals);
         break;
     case REGULAR:
-        std::cout << "REGULAR VERTEX\n";
         handleRegularVertex(event_point, dcel, binary_search_tree, helper,
                             diagonals);
     }
@@ -225,9 +219,6 @@ std::vector<std::pair<int, int>> makeMonotone(DCEL &dcel) {
         EventPoint event_point = event_points.top();
         event_points.pop();
         handleVertex(event_point, dcel, binary_search_tree, helper, diagonals);
-    }
-    for (std::pair<int, int> p : diagonals) {
-        std::cout << p.first << " " << p.second << "\n";
     }
     return diagonals;
 }

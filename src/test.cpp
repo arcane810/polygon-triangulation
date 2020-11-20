@@ -26,6 +26,7 @@ int32_t main() {
     }
     DCEL dcel = DCEL(arr);
     vector<pair<int, int>> ans = makeMonotone(dcel);
+    cout << ans.size() << "\n";
     for (auto it : ans) {
         cout << it.first << " " << it.second << "\n";
     }
