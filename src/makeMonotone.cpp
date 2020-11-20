@@ -1,15 +1,11 @@
 /** @file */
 
 #include "makeMonotone.hpp"
+#include <iostream>
 #include <queue>
 #include <set>
 #include <utility>
 #include <vector>
-
-struct EventPoint {
-    Vertex vertex;
-    int index;
-};
 
 /**
  * A comparator class with a functor to compare 2 vertices for priority in the
@@ -31,13 +27,15 @@ class CompareEdges {
   public:
     bool operator()(std::pair<Edge *, int> first,
                     std::pair<Edge *, int> second) {
-        return first.first->v1->point.x < second.first->v1->point.x;
+        return std::min(first.first->v1->point.x, first.first->v2->point.x) <
+               std::min(second.first->v1->point.x, second.first->v2->point.x);
     }
 };
 
 int n;
 
 VertexType getVertexType(EventPoint &event_point, DCEL &dcel) {
+    int n = dcel.vertices.size();
     Vertex curr_vertex = event_point.vertex;
     Vertex prev_vertex = dcel.vertices[(event_point.index - 1 + n) % n];
     Vertex next_vertex = dcel.vertices[(event_point.index + 1) % n];
@@ -84,21 +82,25 @@ void handleEndVertex(
         if (getVertexType(helper_e_i_1, dcel) == MERGE) {
             diagonals.push_back(
                 std::make_pair(event_point.index, helper_e_i_1.index));
-            binary_search_tree.erase(
-                std::make_pair((&dcel.edges[(event_point.index - 1 + n) % n]),
-                               (event_point.index - 1 + n) % n));
         }
     }
+    std::cout << "BST size before erase:" << binary_search_tree.size() << "\n";
+    binary_search_tree.erase(
+        std::make_pair((&dcel.edges[(event_point.index - 1 + n) % n]),
+                       (event_point.index - 1 + n) % n));
+    std::cout << "BST size after erase:" << binary_search_tree.size() << "\n";
 }
 void handleSplitVertex(
     EventPoint &event_point, DCEL &dcel,
     std::set<std::pair<Edge *, int>, CompareEdges> &binary_search_tree,
     std::vector<int> &helper, std::vector<std::pair<int, int>> &diagonals) {
+    Edge temp = Edge(&event_point.vertex, &event_point.vertex, nullptr);
     auto ejp = (binary_search_tree.lower_bound(
-        std::make_pair(&dcel.edges[event_point.index], event_point.index)));
+        std::make_pair(&temp, event_point.index)));
     ejp--;
     diagonals.push_back(
         std::make_pair(helper[(*ejp).second], event_point.index));
+    std::cout << event_point.index << " " << helper[(*ejp).second] << std::endl;
     helper[event_point.index] = event_point.index;
     helper[(*ejp).second] = event_point.index;
 }
@@ -120,8 +122,10 @@ void handleMergeVertex(
     binary_search_tree.erase(
         std::make_pair((&dcel.edges[(event_point.index - 1 + n) % n]),
                        (event_point.index - 1 + n) % n));
+
+    Edge temp = Edge(&event_point.vertex, &event_point.vertex, nullptr);
     auto ejp = (binary_search_tree.lower_bound(
-        std::make_pair(&dcel.edges[event_point.index], event_point.index)));
+        std::make_pair(&temp, event_point.index)));
     ejp--;
     EventPoint helper_e_j;
     helper_e_j.vertex = dcel.vertices[helper[(*ejp).second]];
@@ -150,20 +154,27 @@ void handleRegularVertex(
             if (getVertexType(helper_e_i_1, dcel) == MERGE) {
                 diagonals.push_back(
                     std::make_pair(event_point.index, helper_e_i_1.index));
-                binary_search_tree.erase(std::make_pair(
-                    (&dcel.edges[(event_point.index - 1 + n) % n]),
-                    (event_point.index - 1 + n) % n));
             }
         }
-        binary_search_tree.insert(
-            std::make_pair(&dcel.edges[event_point.index], event_point.index));
-        helper[event_point.index] = event_point.index;
+
+        std::cout << "BST size before erase:" << binary_search_tree.size()
+                  << "\n";
+
         binary_search_tree.erase(
             std::make_pair((&dcel.edges[(event_point.index - 1 + n) % n]),
                            (event_point.index - 1 + n) % n));
+
+        std::cout << "BST size after erase:" << binary_search_tree.size()
+                  << "\n";
+
+        binary_search_tree.insert(
+            std::make_pair(&dcel.edges[event_point.index], event_point.index));
+        helper[event_point.index] = event_point.index;
     } else {
+
+        Edge temp = Edge(&event_point.vertex, &event_point.vertex, nullptr);
         auto ejp = (binary_search_tree.lower_bound(
-            std::make_pair(&dcel.edges[event_point.index], event_point.index)));
+            std::make_pair(&temp, event_point.index)));
         ejp--;
         EventPoint helper_e_j;
         helper_e_j.vertex = dcel.vertices[helper[(*ejp).second]];
@@ -183,21 +194,26 @@ void handleVertex(
     VertexType vertex_type = getVertexType(event_point, dcel);
     switch (vertex_type) {
     case START:
+        std::cout << "START VERTEX" << std::endl;
         handleStartVertex(event_point, dcel, binary_search_tree, helper);
         break;
     case END:
+        std::cout << "END VERTEX" << std::endl;
         handleEndVertex(event_point, dcel, binary_search_tree, helper,
                         diagonals);
         break;
     case SPLIT:
+        std::cout << "SPLIT VERTEX" << std::endl;
         handleSplitVertex(event_point, dcel, binary_search_tree, helper,
                           diagonals);
         break;
     case MERGE:
+        std::cout << "MERGE VERTEX" << std::endl;
         handleMergeVertex(event_point, dcel, binary_search_tree, helper,
                           diagonals);
         break;
     case REGULAR:
+        std::cout << "REGULAR VERTEX" << std::endl;
         handleRegularVertex(event_point, dcel, binary_search_tree, helper,
                             diagonals);
     }

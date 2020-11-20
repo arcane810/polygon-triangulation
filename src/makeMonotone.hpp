@@ -6,3 +6,10 @@
 #include <vector>
 
 std::vector<std::pair<int, int>> makeMonotone(DCEL &dcel);
+
+struct EventPoint {
+    Vertex vertex;
+    int index;
+};
+
+VertexType getVertexType(EventPoint &event_point, DCEL &dcel);
