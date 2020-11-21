@@ -9,6 +9,7 @@ for i in range(n):
     points.append([x, y])
     xs.append(x)
     ys.append(y)
+    plt.annotate(str(i), [x, y])
 plt.scatter(xs, ys)
 for i in range(n):
     xvals = [points[i-1][0], points[i][0]]
