@@ -75,7 +75,16 @@ $(function() {
 </ul>
 <p>Important points to take care of:</p>
 <ul>
-<li>While using this API provide the polygon in counter-clockwise order in the <a class="el" href="class_d_c_e_l.html">DCEL</a> constructor. </li>
+<li>While using this API provide the polygon in counter-clockwise order in the <a class="el" href="class_d_c_e_l.html">DCEL</a> constructor.</li>
+</ul>
+<p>To use the driver code (test.cpp)</p>
+<ul>
+<li>compile using g++ *.cpp inside source</li>
+<li>run the program ./a.out and enter test number (1-5)</li>
+<li>tests can be added in /tests folder in file called inx.txt where x is a number, 1st line of test should be number of points and then x, y space separated, 1 in each line in counter-clockwise or clockwise order.</li>
+<li>might need to use bigger stack size (using ulimit -s unlimited in linux)</li>
+<li>output of edges of form v1, v2 is in outx.txt in tests folder</li>
+<li>plot.py plots the results (run plot.py and enter test number (1-5)) </li>
 </ul>
 </div></div><!-- PageDoc -->
 </div><!-- contents -->

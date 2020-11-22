@@ -16,5 +16,17 @@ Important points to take care of\+:
 
 
 \begin{DoxyItemize}
-\item While using this A\+PI provide the polygon in counter-\/clockwise order in the \mbox{\hyperlink{class_d_c_e_l}{D\+C\+EL}} constructor. 
+\item While using this A\+PI provide the polygon in counter-\/clockwise order in the \mbox{\hyperlink{class_d_c_e_l}{D\+C\+EL}} constructor.
+\end{DoxyItemize}
+
+To use the driver code (test.\+cpp)
+
+
+\begin{DoxyItemize}
+\item compile using g++ $\ast$.cpp inside source
+\item run the program ./a.out and enter test number (1-\/5)
+\item tests can be added in /tests folder in file called inx.\+txt where x is a number, 1st line of test should be number of points and then x, y space separated, 1 in each line in counter-\/clockwise or clockwise order.
+\item might need to use bigger stack size (using ulimit -\/s unlimited in linux)
+\item output of edges of form v1, v2 is in outx.\+txt in tests folder
+\item plot.\+py plots the results (run plot.\+py and enter test number (1-\/5)) 
 \end{DoxyItemize}
