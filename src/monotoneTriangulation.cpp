@@ -7,8 +7,6 @@ DCEL monotoneTriangulation(DCEL &dcel) {
     int n = dcel.faces.size();
     std::vector<std::pair<int, int>> diagonals;
     for (int i = 1; i < n; i++) {
-        std::cout << "Face " << i << "\n///////////////////////////////////"
-                  << std::endl;
         faceTriangulation(dcel.faces[i], dcel, diagonals);
     }
     std::vector<Point> new_points;
@@ -53,9 +51,6 @@ void faceTriangulation(Face &face, DCEL &dcel,
     st.push(vertices[0]);
     st.push(vertices[1]);
     for (int j = 2; j < vertices.size() - 1; j++) {
-        std::cout << "Processing vertex: " << j << " "
-                  << index_in_dcel[vertices[j].second]
-                  << "\n===================" << std::endl;
         int stopi = index_in_dcel[st.top().second];
         int stoppi = index_in_dcel[(st.top().second - 1 + vertices.size()) %
                                    vertices.size()];
