@@ -1,14 +1,20 @@
 /** @file */
 
 #include "DCEL.hpp"
+#include <algorithm>
+#include <cmath>
 #include <iostream>
 using namespace std;
 
 Face::Face(HalfEdge *half_edge) : half_edge(half_edge) {}
 
 Face::Face() {}
+DCEL::DCEL() {}
 
 Vertex::Vertex() {}
+
+Edge::Edge() {}
+HalfEdge::HalfEdge() {}
 
 Vertex::Vertex(Point p) : point(p) {}
 
@@ -20,58 +26,131 @@ Edge::Edge(Vertex *v1, Vertex *v2, HalfEdge *half_edge)
 DCEL::DCEL(std::vector<Point> points) {
     Face outer = Face();
     Face inner = Face();
-
+    faces.push_back(inner);
+    faces.push_back(outer);
     // Populate Vertices
     for (Point p : points) {
         vertices.push_back(Vertex(p));
+        vertices.back().index = vertices.size() - 1;
+        edges.push_back(Edge());
+        half_edges.push_back(HalfEdge());
+        half_edges.push_back(HalfEdge());
     }
     int n = vertices.size();
 
-    HalfEdge *prev_in = nullptr;
-    HalfEdge *prev_out = nullptr;
-
-    HalfEdge *first_in, *first_out;
-
     for (int i = 0; i < n; i++) {
+        half_edges[i].origin = &vertices[i];
+        half_edges[i + n].origin = &vertices[(i + 1) % n];
+        half_edges[i].index = i;
+        half_edges[i + n].index = i + n;
+        half_edges[i].next = &half_edges[(i + 1) % n];
+        half_edges[(i + 1) % n].prev = &half_edges[i];
 
-        // Outer HalfEdge
-        HalfEdge curr_out = HalfEdge(&vertices[(i + 1) % n]);
-        half_edges.push_back(curr_out);
+        half_edges[(i + 1) % n + n].next = &half_edges[i + n];
+        half_edges[i + n].prev = &half_edges[(i + 1) % n + n];
 
-        vertices[(i + 1) % n].half_edge = &curr_out;
+        edges[i].v1 = &vertices[i];
+        edges[i].v2 = &vertices[(i + 1) % n];
+        edges[i].half_edge = &half_edges[i];
+        vertices[i].half_edge = &half_edges[i];
+        half_edges[i].edge = &edges[i];
+        half_edges[i + n].edge = &edges[i];
 
-        curr_out.next = prev_out;
-        if (prev_out != nullptr) {
-            prev_out->prev = &curr_out;
-        } else {
-            first_out = &curr_out;
-        }
-        prev_out = &curr_out;
-
-        HalfEdge curr_in = HalfEdge(&vertices[i]);
-        half_edges.push_back(curr_in);
-        curr_in.twin = &curr_out;
-        curr_out.twin = &curr_in;
-
-        curr_in.prev = prev_in;
-        if (prev_in != nullptr) {
-            prev_in->next = &curr_in;
-        } else {
-            first_in = &curr_in;
-        }
-        prev_in = &curr_in;
-        Edge edge = Edge(&vertices[i], &vertices[(i + 1) % n], &curr_out);
-        curr_in.edge = &edge;
-        curr_out.edge = &edge;
-        edges.push_back(edge);
+        half_edges[i].twin = &half_edges[i + n];
+        half_edges[i + n].twin = &half_edges[i];
     }
-    prev_out->prev = first_out;
-    first_out->next = prev_out;
+    faces[0].half_edge = &half_edges[0];
+    faces[1].half_edge = &half_edges[n];
+}
 
-    prev_in->next = first_in;
-    first_in->prev - prev_in;
+long double getAngle(long double x, long double y) {
+    if (y > 0) {
+        return acos(x / (sqrt(x * x + y * y)));
+    } else {
+        return 2 * acos(-1) - acos(x / (sqrt(x * x + y * y)));
+    }
+}
 
-    inner.half_edge = first_in;
-
-    outer.half_edge = first_out;
+DCEL::DCEL(std::vector<Point> points,
+           std::vector<std::pair<int, int>> edgeList) {
+    int n = points.size();
+    int m = edgeList.size();
+    for (Point point : points) {
+        vertices.push_back(Vertex(point));
+        vertices.back().index = vertices.size() - 1;
+    }
+    for (int i = 0; i < m; i++) {
+        edges.push_back(Edge());
+        half_edges.push_back(HalfEdge());
+        half_edges.push_back(HalfEdge());
+    }
+    for (int i = 0; i < m; i++) {
+        half_edges[i].twin = &half_edges[i + m];
+        half_edges[i + m].twin = &half_edges[i];
+        half_edges[i].index = i;
+        half_edges[i + m].index = i + m;
+    }
+    vector<pair<int, int>> vout[n];
+    for (int i = 0; i < m; i++) {
+        vout[edgeList[i].first].push_back({i, edgeList[i].second});
+        vout[edgeList[i].second].push_back({i, edgeList[i].first});
+    }
+    for (int i = 0; i < n; i++) {
+        int center = i;
+        auto comparator = [&](pair<int, int> e1, pair<int, int> e2) {
+            return getAngle(points[e1.second].x - points[center].x,
+                            points[e1.second].y - points[center].y) >
+                   getAngle(points[e2.second].x - points[center].x,
+                            points[e2.second].y - points[center].y);
+        };
+        std::sort(vout[i].begin(), vout[i].end(), comparator);
+        for (int j = 0; j < vout[i].size(); j++) {
+            int ei = vout[i][j].first;
+            int nei = vout[i][(j + 1) % vout[i].size()].first;
+            int from = vout[i][j].second;
+            int to = vout[i][(j + 1) % vout[i].size()].second;
+            int e1i, e2i;
+            if (from < i) {
+                e1i = ei + m;
+            } else {
+                e1i = ei;
+            }
+            if (i < to) {
+                e2i = nei + m;
+            } else {
+                e2i = nei;
+            }
+            half_edges[e1i].next = &half_edges[e2i];
+            half_edges[e2i].prev = &half_edges[e1i];
+            half_edges[e2i].origin = &vertices[i];
+            vertices[i].half_edge = &half_edges[e1i];
+        }
+    }
+    vector<bool> done(2 * m, 0);
+    // for (int i = 0; i < 2 * m; i++) {
+    //     std::cout << "Edge: " << i << " Prev: " << half_edges[i].prev->index
+    //               << " Next: " << half_edges[i].next->index << std::endl;
+    // }
+    for (int i = 0; i < 2 * m; i++) {
+        if (done[i])
+            continue;
+        done[i] = 1;
+        HalfEdge *head = &half_edges[i];
+        HalfEdge *curr = head;
+        int j = 0;
+        curr = head->next;
+        while (curr != head) {
+            j++;
+            done[curr->index] = 1;
+            curr = curr->next;
+        }
+        Face face = Face();
+        face.half_edge = &(half_edges[i]);
+        faces.push_back(face);
+    }
+    for (int i = 0; i < m; i++) {
+        edges[i].half_edge = &half_edges[i];
+        edges[i].v1 = half_edges[i].origin;
+        edges[i].v2 = half_edges[i + m].origin;
+    }
 }

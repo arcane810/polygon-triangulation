@@ -5,7 +5,7 @@
 #include <utility>
 #include <vector>
 
-std::vector<std::pair<int, int>> makeMonotone(DCEL &dcel);
+DCEL makeMonotone(DCEL &dcel);
 
 struct EventPoint {
     Vertex vertex;

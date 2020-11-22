@@ -5,7 +5,7 @@ points = []
 xs = []
 ys = []
 for i in range(n):
-    x, y = map(int, f.readline().split())
+    x, y = map(float, f.readline().split())
     points.append([x, y])
     xs.append(x)
     ys.append(y)

@@ -2,8 +2,8 @@
 
 #pragma once
 #include "utils.hpp"
+#include <utility>
 #include <vector>
-
 /// Enum type for the type of vertex
 enum VertexType {
     /// Start Vertex
@@ -31,6 +31,8 @@ class Vertex {
 
     /// Incident HalfEdge (any half edge that originates from this vertex)
     HalfEdge *half_edge;
+
+    int index;
 
     /**
      * Default Constructor
@@ -61,6 +63,7 @@ class HalfEdge {
     /// Edge to which HalfEdge belongs
     Edge *edge;
 
+    int index;
     /**
      * Default Constructor
      */
@@ -142,8 +145,10 @@ class DCEL {
      */
     DCEL(std::vector<Point> points);
 
+    DCEL();
+
     /**
-     * Adds an edge to the DCEL
+     *
      */
-    void addEdge();
+    DCEL(std::vector<Point> points, std::vector<std::pair<int, int>> edges);
 };

@@ -1,4 +1,5 @@
 #include "makeMonotone.hpp"
+#include "monotoneTriangulation.hpp"
 #include "utils.hpp"
 #include <bits/stdc++.h>
 using namespace std;
@@ -20,9 +21,9 @@ int32_t main() {
     cin >> n;
     vector<Point> arr(n);
     int mxi = 0;
-    int mxy = -100000000;
+    long double mxy = -100000000;
     for (int i = 0; i < n; i++) {
-        int x, y;
+        long double x, y;
         cin >> x >> y;
         arr[i] = Point(x, y);
         if (y > mxy) {
@@ -43,12 +44,21 @@ int32_t main() {
             rout << arr[i].x << " " << arr[i].y << "\n";
         }
     }
-    vector<pair<int, int>> ans = makeMonotone(dcel);
-    fout << ans.size() << "\n";
-    cout << ans.size() << "\n";
-    for (auto it : ans) {
-        fout << it.first << " " << it.second << "\n";
-        cout << it.first << " " << it.second << "\n";
+    DCEL tans = makeMonotone(dcel);
+    // fout << ans.edges.size() << "\n";
+    // cout << ans.edges.size() << "\n";
+    // for (auto it : ans.edges) {
+    //     fout << it.v1->index << " " << it.v2->index << "\n";
+    //     cout << it.v1->index << " " << it.v2->index << "\n";
+    // }
+    std::cout << "MakeMonotone Done!" << std::endl;
+    tans = monotoneTriangulation(tans);
+    std::cout << "Triangulation Done!" << std::endl;
+    fout << tans.edges.size() << "\n";
+    cout << tans.edges.size() << "\n";
+    for (auto it : tans.edges) {
+        fout << it.v1->index << " " << it.v2->index << "\n";
+        cout << it.v1->index << " " << it.v2->index << "\n";
     }
 
     return 0;
