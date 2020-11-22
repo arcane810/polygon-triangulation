@@ -93,6 +93,14 @@ VertexType getVertexType(EventPoint &event_point, DCEL &dcel) {
     return vertex_type;
 }
 
+/**
+ * A function to handle START Vertices of polygon
+ * @param event_point the event point
+ * @param dcel DCEL of the polygon to which the vertex belongs
+ * @param binary_search_tree A BST containing the edges.
+ * @param helper A vector which stores the helper of edges using their indices.
+ */
+
 void handleStartVertex(
     EventPoint &event_point, DCEL &dcel,
     std::set<std::pair<Edge *, int>, CompareEdges> &binary_search_tree,
@@ -101,6 +109,15 @@ void handleStartVertex(
         std::make_pair(&dcel.edges[event_point.index], event_point.index));
     helper[event_point.index] = event_point.index;
 }
+
+/**
+ * A function to handle END Vertices of polygon
+ * @param event_point the event point
+ * @param dcel DCEL of the polygon to which the vertex belongs
+ * @param binary_search_tree A BST containing the edges.
+ * @param helper A vector which stores the helper of edges using their indices.
+ * @param diagonals A vector of diagonals to which new diagonals are added.
+ */
 void handleEndVertex(
     EventPoint &event_point, DCEL &dcel,
     std::set<std::pair<Edge *, int>, CompareEdges> &binary_search_tree,
@@ -119,6 +136,16 @@ void handleEndVertex(
         std::make_pair((&dcel.edges[(event_point.index - 1 + n) % n]),
                        (event_point.index - 1 + n) % n));
 }
+
+/**
+ * A function to handle SPLIT Vertices of polygon
+ * @param event_point the event point
+ * @param dcel DCEL of the polygon to which the vertex belongs
+ * @param binary_search_tree A BST containing the edges.
+ * @param helper A vector which stores the helper of edges using their indices.
+ * @param diagonals A vector of diagonals to which new diagonals are added.
+ */
+
 void handleSplitVertex(
     EventPoint &event_point, DCEL &dcel,
     std::set<std::pair<Edge *, int>, CompareEdges> &binary_search_tree,
@@ -140,6 +167,15 @@ void handleSplitVertex(
     helper[event_point.index] = event_point.index;
     helper[(*ejp).second] = event_point.index;
 }
+
+/**
+ * A function to handle MERGE Vertices of polygon
+ * @param event_point the event point
+ * @param dcel DCEL of the polygon to which the vertex belongs
+ * @param binary_search_tree A BST containing the edges.
+ * @param helper A vector which stores the helper of edges using their indices.
+ * @param diagonals A vector of diagonals to which new diagonals are added.
+ */
 
 void handleMergeVertex(
     EventPoint &event_point, DCEL &dcel,
@@ -176,6 +212,15 @@ void handleMergeVertex(
     }
     helper[(*ejp).second] = event_point.index;
 }
+
+/**
+ * A function to handle REGULAR Vertices of polygon
+ * @param event_point the event point
+ * @param dcel DCEL of the polygon to which the vertex belongs
+ * @param binary_search_tree A BST containing the edges.
+ * @param helper A vector which stores the helper of edges using their indices.
+ * @param diagonals A vector of diagonals to which new diagonals are added.
+ */
 
 void handleRegularVertex(
     EventPoint &event_point, DCEL &dcel,
@@ -226,6 +271,14 @@ void handleRegularVertex(
     }
 }
 
+/**
+ * A function to handle Vertices of polygon
+ * @param event_point the event point
+ * @param dcel DCEL of the polygon to which the vertex belongs
+ * @param binary_search_tree A BST containing the edges.
+ * @param helper A vector which stores the helper of edges using their indices.
+ * @param diagonals A vector of diagonals to which new diagonals are added.
+ */
 void handleVertex(
     EventPoint &event_point, DCEL &dcel,
     std::set<std::pair<Edge *, int>, CompareEdges> &binary_search_tree,

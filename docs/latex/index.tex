@@ -1,3 +1,20 @@
 \label{index_md_src_Readme}%
 \Hypertarget{index_md_src_Readme}%
-An implementation of polygon triangulation which first partitions the polygon into monotone parts and triangulates the monotone polygons. A \mbox{\hyperlink{class_d_c_e_l}{D\+C\+EL}} is used to store the polygon and its monotone partitioning and the triangulation. Made as a part of the computation geometry course at B\+I\+TS Pilani, Hyderabad Campus. 
+ An implementation of polygon triangulation which first partitions the polygon into monotone parts and triangulates the monotone polygons. A \mbox{\hyperlink{class_d_c_e_l}{D\+C\+EL}} is used to store the polygon and its monotone partitioning and the triangulation. Made as a part of the computation geometry course at B\+I\+TS Pilani, Hyderabad Campus.
+
+To use the api\+:
+
+
+\begin{DoxyItemize}
+\item Use \mbox{\hyperlink{utils_8cpp}{utils.\+cpp}} header for the \mbox{\hyperlink{class_point}{Point}} class
+\item Include \mbox{\hyperlink{utils_8hpp}{utils.\+hpp}}, \mbox{\hyperlink{_d_c_e_l_8hpp}{D\+C\+E\+L.\+hpp}}, \mbox{\hyperlink{make_monotone_8hpp}{make\+Monotone.\+hpp}} and \mbox{\hyperlink{monotone_triangulation_8hpp}{monotone\+Triangulation.\+hpp}}
+\item Use \mbox{\hyperlink{make_monotone_8cpp_a31a4c0ba0613e4dee1f5892f6ea2c365}{make\+Monotone()}} function to partition the polygon into monotone polygons and then use \mbox{\hyperlink{monotone_triangulation_8cpp_a99e8ed0941479757edfb577ebe8d1061}{monotone\+Triangulation()}} function to triangulate the partitions polygon.
+\item Compile all the files in proper order.
+\end{DoxyItemize}
+
+Important points to take care of\+:
+
+
+\begin{DoxyItemize}
+\item While using this A\+PI provide the polygon in counter-\/clockwise order in the \mbox{\hyperlink{class_d_c_e_l}{D\+C\+EL}} constructor. 
+\end{DoxyItemize}
