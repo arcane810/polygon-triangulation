@@ -9,7 +9,7 @@
 \item 
 \mbox{\hyperlink{class_d_c_e_l_a4adfbf9a9554990dd0ab83eb027cb583}{D\+C\+EL}} (std\+::vector$<$ \mbox{\hyperlink{class_point}{Point}} $>$ points)
 \item 
-void \mbox{\hyperlink{class_d_c_e_l_af7c1a16ddc3e9f39fdf2390c16a7778f}{add\+Edge}} ()
+\mbox{\hyperlink{class_d_c_e_l_a18c8873a62921ddbfd213726de727697}{D\+C\+EL}} (std\+::vector$<$ \mbox{\hyperlink{class_point}{Point}} $>$ points, std\+::vector$<$ std\+::pair$<$ int, int $>$$>$ \mbox{\hyperlink{class_d_c_e_l_a51cdc5288e75e39a2c27b45642aca511}{edges}})
 \end{DoxyCompactItemize}
 \doxysubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
@@ -22,7 +22,10 @@ std\+::vector$<$ \mbox{\hyperlink{class_face}{Face}} $>$ \mbox{\hyperlink{class_
 \begin{DoxyCompactList}\small\item\em List of Faces in the \mbox{\hyperlink{class_d_c_e_l}{D\+C\+EL}}. \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{class_d_c_e_l_a668092eb5ec6493ca7abfc39a563e81c}\label{class_d_c_e_l_a668092eb5ec6493ca7abfc39a563e81c}} 
 std\+::vector$<$ \mbox{\hyperlink{class_half_edge}{Half\+Edge}} $>$ \mbox{\hyperlink{class_d_c_e_l_a668092eb5ec6493ca7abfc39a563e81c}{half\+\_\+edges}}
-\begin{DoxyCompactList}\small\item\em List of Half\+Edges in the \mbox{\hyperlink{class_d_c_e_l}{D\+C\+EL}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em List of Half\+Edges in the \mbox{\hyperlink{class_d_c_e_l}{D\+C\+EL}}. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_d_c_e_l_a51cdc5288e75e39a2c27b45642aca511}\label{class_d_c_e_l_a51cdc5288e75e39a2c27b45642aca511}} 
+std\+::vector$<$ \mbox{\hyperlink{class_edge}{Edge}} $>$ \mbox{\hyperlink{class_d_c_e_l_a51cdc5288e75e39a2c27b45642aca511}{edges}}
+\begin{DoxyCompactList}\small\item\em List of Edges in the \mbox{\hyperlink{class_d_c_e_l}{D\+C\+EL}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -32,7 +35,7 @@ std\+::vector$<$ \mbox{\hyperlink{class_half_edge}{Half\+Edge}} $>$ \mbox{\hyper
 \mbox{\Hypertarget{class_d_c_e_l_a4adfbf9a9554990dd0ab83eb027cb583}\label{class_d_c_e_l_a4adfbf9a9554990dd0ab83eb027cb583}} 
 \index{DCEL@{DCEL}!DCEL@{DCEL}}
 \index{DCEL@{DCEL}!DCEL@{DCEL}}
-\doxysubsubsection{\texorpdfstring{DCEL()}{DCEL()}}
+\doxysubsubsection{\texorpdfstring{DCEL()}{DCEL()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
 {\footnotesize\ttfamily D\+C\+E\+L\+::\+D\+C\+EL (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \mbox{\hyperlink{class_point}{Point}} $>$}]{points }\end{DoxyParamCaption})}
 
 Constructor. Makes a \mbox{\hyperlink{class_d_c_e_l}{D\+C\+EL}} from a vector of points of a polygon.
@@ -42,16 +45,22 @@ Constructor. Makes a \mbox{\hyperlink{class_d_c_e_l}{D\+C\+EL}} from a vector of
 {\em points} & List of points of a polygon in clockwise order \\
 \hline
 \end{DoxyParams}
+\mbox{\Hypertarget{class_d_c_e_l_a18c8873a62921ddbfd213726de727697}\label{class_d_c_e_l_a18c8873a62921ddbfd213726de727697}} 
+\index{DCEL@{DCEL}!DCEL@{DCEL}}
+\index{DCEL@{DCEL}!DCEL@{DCEL}}
+\doxysubsubsection{\texorpdfstring{DCEL()}{DCEL()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily D\+C\+E\+L\+::\+D\+C\+EL (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \mbox{\hyperlink{class_point}{Point}} $>$}]{points,  }\item[{std\+::vector$<$ std\+::pair$<$ int, int $>$$>$}]{edges }\end{DoxyParamCaption})}
+
+Constructor. Makes \mbox{\hyperlink{class_d_c_e_l}{D\+C\+EL}} from set of points and edges
 
 
-\doxysubsection{Member Function Documentation}
-\mbox{\Hypertarget{class_d_c_e_l_af7c1a16ddc3e9f39fdf2390c16a7778f}\label{class_d_c_e_l_af7c1a16ddc3e9f39fdf2390c16a7778f}} 
-\index{DCEL@{DCEL}!addEdge@{addEdge}}
-\index{addEdge@{addEdge}!DCEL@{DCEL}}
-\doxysubsubsection{\texorpdfstring{addEdge()}{addEdge()}}
-{\footnotesize\ttfamily void D\+C\+E\+L\+::add\+Edge (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+\begin{DoxyParams}{Parameters}
+{\em points} & List of points of a polygon \\
+\hline
+{\em edges} & List of edges of form pair$<$1st vertex, 2nd vertex$>$ \\
+\hline
+\end{DoxyParams}
 
-Adds an edge to the \mbox{\hyperlink{class_d_c_e_l}{D\+C\+EL}} 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 

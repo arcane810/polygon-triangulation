@@ -25,7 +25,12 @@ class Point {
      */
     Point();
 
-    bool isBelow(Point p) { return (y == p.y) ? (x > p.x) : (y < p.y); }
+    /**
+     * Checks if this point is below the point passed as parameter.
+     * @param p The point for which the check is to be made.
+     * @return true if this point is below p.
+     */
+    bool isBelow(Point p);
 };
 
 /**

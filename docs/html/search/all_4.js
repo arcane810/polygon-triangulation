@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['face_7',['Face',['../class_face.html',1,'Face'],['../class_face.html#afdb634bc2d5287ba0d62e46b57e9dc2e',1,'Face::Face()'],['../class_face.html#a0bc80ccfdc892c099e7d83e835e6722e',1,'Face::Face(HalfEdge *edge)']]],
-  ['faces_8',['faces',['../class_d_c_e_l.html#af831fc5411fce7d100d23072d031813e',1,'DCEL']]]
+  ['getangle_13',['getAngle',['../_d_c_e_l_8cpp.html#a199c21342a199f0b5c9fc154ae90d2b4',1,'DCEL.cpp']]],
+  ['getvertextype_14',['getVertexType',['../make_monotone_8cpp.html#a2b300be047af16782768d65a78222659',1,'getVertexType(EventPoint &amp;event_point, DCEL &amp;dcel):&#160;makeMonotone.cpp'],['../make_monotone_8hpp.html#a2b300be047af16782768d65a78222659',1,'getVertexType(EventPoint &amp;event_point, DCEL &amp;dcel):&#160;makeMonotone.cpp']]]
 ];

@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['edge_41',['edge',['../class_vertex.html#aff35571444847fcab05f808b322a8dd6',1,'Vertex::edge()'],['../class_face.html#a92c80d451252fe71136aaef224f1853b',1,'Face::edge()']]]
+  ['edge_86',['edge',['../class_half_edge.html#ab6093e78646e0a80c94c0a17858484d4',1,'HalfEdge']]],
+  ['edges_87',['edges',['../class_d_c_e_l.html#a51cdc5288e75e39a2c27b45642aca511',1,'DCEL']]]
 ];

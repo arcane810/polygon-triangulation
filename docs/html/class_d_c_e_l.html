@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.20"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Convex Hull Algorithms: DCEL Class Reference</title>
+<title>Polygon Triangulation: DCEL Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -21,7 +21,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">Convex Hull Algorithms
+   <div id="projectname">Polygon Triangulation
    </div>
   </td>
  </tr>
@@ -76,8 +76,8 @@ $(function() {
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a4adfbf9a9554990dd0ab83eb027cb583"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_d_c_e_l.html#a4adfbf9a9554990dd0ab83eb027cb583">DCEL</a> (std::vector&lt; <a class="el" href="class_point.html">Point</a> &gt; points)</td></tr>
 <tr class="separator:a4adfbf9a9554990dd0ab83eb027cb583"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af7c1a16ddc3e9f39fdf2390c16a7778f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_d_c_e_l.html#af7c1a16ddc3e9f39fdf2390c16a7778f">addEdge</a> ()</td></tr>
-<tr class="separator:af7c1a16ddc3e9f39fdf2390c16a7778f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a18c8873a62921ddbfd213726de727697"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_d_c_e_l.html#a18c8873a62921ddbfd213726de727697">DCEL</a> (std::vector&lt; <a class="el" href="class_point.html">Point</a> &gt; points, std::vector&lt; std::pair&lt; int, int &gt;&gt; <a class="el" href="class_d_c_e_l.html#a51cdc5288e75e39a2c27b45642aca511">edges</a>)</td></tr>
+<tr class="separator:a18c8873a62921ddbfd213726de727697"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
@@ -93,12 +93,16 @@ std::vector&lt; <a class="el" href="class_face.html">Face</a> &gt;&#160;</td><td
 std::vector&lt; <a class="el" href="class_half_edge.html">HalfEdge</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_d_c_e_l.html#a668092eb5ec6493ca7abfc39a563e81c">half_edges</a></td></tr>
 <tr class="memdesc:a668092eb5ec6493ca7abfc39a563e81c"><td class="mdescLeft">&#160;</td><td class="mdescRight">List of HalfEdges in the <a class="el" href="class_d_c_e_l.html">DCEL</a>. <br /></td></tr>
 <tr class="separator:a668092eb5ec6493ca7abfc39a563e81c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a51cdc5288e75e39a2c27b45642aca511"><td class="memItemLeft" align="right" valign="top"><a id="a51cdc5288e75e39a2c27b45642aca511"></a>
+std::vector&lt; <a class="el" href="class_edge.html">Edge</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_d_c_e_l.html#a51cdc5288e75e39a2c27b45642aca511">edges</a></td></tr>
+<tr class="memdesc:a51cdc5288e75e39a2c27b45642aca511"><td class="mdescLeft">&#160;</td><td class="mdescRight">List of Edges in the <a class="el" href="class_d_c_e_l.html">DCEL</a>. <br /></td></tr>
+<tr class="separator:a51cdc5288e75e39a2c27b45642aca511"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p><a class="el" href="class_d_c_e_l.html">DCEL</a> class </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a4adfbf9a9554990dd0ab83eb027cb583"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4adfbf9a9554990dd0ab83eb027cb583">&#9670;&nbsp;</a></span>DCEL()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a4adfbf9a9554990dd0ab83eb027cb583">&#9670;&nbsp;</a></span>DCEL() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -122,22 +126,39 @@ std::vector&lt; <a class="el" href="class_half_edge.html">HalfEdge</a> &gt;&#160
 
 </div>
 </div>
-<h2 class="groupheader">Member Function Documentation</h2>
-<a id="af7c1a16ddc3e9f39fdf2390c16a7778f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af7c1a16ddc3e9f39fdf2390c16a7778f">&#9670;&nbsp;</a></span>addEdge()</h2>
+<a id="a18c8873a62921ddbfd213726de727697"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a18c8873a62921ddbfd213726de727697">&#9670;&nbsp;</a></span>DCEL() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void DCEL::addEdge </td>
+          <td class="memname">DCEL::DCEL </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype">std::vector&lt; <a class="el" href="class_point.html">Point</a> &gt;&#160;</td>
+          <td class="paramname"><em>points</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">std::vector&lt; std::pair&lt; int, int &gt;&gt;&#160;</td>
+          <td class="paramname"><em>edges</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Adds an edge to the <a class="el" href="class_d_c_e_l.html">DCEL</a> </p>
+<p>Constructor. Makes <a class="el" href="class_d_c_e_l.html">DCEL</a> from set of points and edges</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">points</td><td>List of points of a polygon </td></tr>
+    <tr><td class="paramname">edges</td><td>List of edges of form pair&lt;1st vertex, 2nd vertex&gt; </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

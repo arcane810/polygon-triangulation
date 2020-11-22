@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.20"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Convex Hull Algorithms: Face Class Reference</title>
+<title>Polygon Triangulation: Face Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -21,7 +21,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">Convex Hull Algorithms
+   <div id="projectname">Polygon Triangulation
    </div>
   </td>
  </tr>
@@ -76,15 +76,15 @@ $(function() {
 Public Member Functions</h2></td></tr>
 <tr class="memitem:afdb634bc2d5287ba0d62e46b57e9dc2e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_face.html#afdb634bc2d5287ba0d62e46b57e9dc2e">Face</a> ()</td></tr>
 <tr class="separator:afdb634bc2d5287ba0d62e46b57e9dc2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0bc80ccfdc892c099e7d83e835e6722e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_face.html#a0bc80ccfdc892c099e7d83e835e6722e">Face</a> (<a class="el" href="class_half_edge.html">HalfEdge</a> *<a class="el" href="class_face.html#a92c80d451252fe71136aaef224f1853b">edge</a>)</td></tr>
-<tr class="separator:a0bc80ccfdc892c099e7d83e835e6722e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a81c1fc4a73f74e494e49618fb5c264d6"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_face.html#a81c1fc4a73f74e494e49618fb5c264d6">Face</a> (<a class="el" href="class_half_edge.html">HalfEdge</a> *<a class="el" href="class_face.html#a0b1f3e4d98a99f4c4edc8a7a3e9f5038">half_edge</a>)</td></tr>
+<tr class="separator:a81c1fc4a73f74e494e49618fb5c264d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:a92c80d451252fe71136aaef224f1853b"><td class="memItemLeft" align="right" valign="top"><a id="a92c80d451252fe71136aaef224f1853b"></a>
-<a class="el" href="class_half_edge.html">HalfEdge</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_face.html#a92c80d451252fe71136aaef224f1853b">edge</a></td></tr>
-<tr class="memdesc:a92c80d451252fe71136aaef224f1853b"><td class="mdescLeft">&#160;</td><td class="mdescRight">A half edge on which incident on face. <br /></td></tr>
-<tr class="separator:a92c80d451252fe71136aaef224f1853b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0b1f3e4d98a99f4c4edc8a7a3e9f5038"><td class="memItemLeft" align="right" valign="top"><a id="a0b1f3e4d98a99f4c4edc8a7a3e9f5038"></a>
+<a class="el" href="class_half_edge.html">HalfEdge</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_face.html#a0b1f3e4d98a99f4c4edc8a7a3e9f5038">half_edge</a></td></tr>
+<tr class="memdesc:a0b1f3e4d98a99f4c4edc8a7a3e9f5038"><td class="mdescLeft">&#160;</td><td class="mdescRight">A half edge on which incident on face. <br /></td></tr>
+<tr class="separator:a0b1f3e4d98a99f4c4edc8a7a3e9f5038"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p><a class="el" href="class_face.html">Face</a> Class for <a class="el" href="class_d_c_e_l.html">DCEL</a> </p>
@@ -107,8 +107,8 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a0bc80ccfdc892c099e7d83e835e6722e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0bc80ccfdc892c099e7d83e835e6722e">&#9670;&nbsp;</a></span>Face() <span class="overload">[2/2]</span></h2>
+<a id="a81c1fc4a73f74e494e49618fb5c264d6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a81c1fc4a73f74e494e49618fb5c264d6">&#9670;&nbsp;</a></span>Face() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -117,7 +117,7 @@ Public Attributes</h2></td></tr>
           <td class="memname">Face::Face </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="class_half_edge.html">HalfEdge</a> *&#160;</td>
-          <td class="paramname"><em>edge</em></td><td>)</td>
+          <td class="paramname"><em>half_edge</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -125,7 +125,7 @@ Public Attributes</h2></td></tr>
 <p>Constructor which takes in the incident edge.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">edge</td><td>Any incident edge of the face </td></tr>
+    <tr><td class="paramname">half_edge</td><td>Any incident edge of the face </td></tr>
   </table>
   </dd>
 </dl>

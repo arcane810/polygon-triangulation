@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['makemonotone_2ehpp_11',['makeMonotone.hpp',['../make_monotone_8hpp.html',1,'']]],
-  ['merge_12',['MERGE',['../_d_c_e_l_8hpp.html#afa099a55c5746eff5a0e1ffc04f53cc0a2fafc535b57c03cd67b907e45141d20d',1,'DCEL.hpp']]]
+  ['index_24',['index',['../class_vertex.html#a2e35f7521dfd3fdee65dc26879c62f24',1,'Vertex::index()'],['../class_half_edge.html#a0356a514b584b76bc37b8486f1995d01',1,'HalfEdge::index()']]],
+  ['isbelow_25',['isBelow',['../class_point.html#a94149af943b5f68fa4ffcea61f9658a2',1,'Point']]]
 ];

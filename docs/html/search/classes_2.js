@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['face_28',['Face',['../class_face.html',1,'']]]
+  ['edge_53',['Edge',['../class_edge.html',1,'']]],
+  ['eventpoint_54',['EventPoint',['../struct_event_point.html',1,'']]]
 ];

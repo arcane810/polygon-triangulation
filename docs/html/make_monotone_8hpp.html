@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.20"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Convex Hull Algorithms: src/makeMonotone.hpp File Reference</title>
+<title>Polygon Triangulation: src/makeMonotone.hpp File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -21,7 +21,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">Convex Hull Algorithms
+   <div id="projectname">Polygon Triangulation
    </div>
   </td>
  </tr>
@@ -74,20 +74,426 @@ $(function() {
 <div class="contents">
 <div class="textblock"><code>#include &quot;<a class="el" href="_d_c_e_l_8hpp_source.html">DCEL.hpp</a>&quot;</code><br />
 <code>#include &lt;queue&gt;</code><br />
+<code>#include &lt;utility&gt;</code><br />
+<code>#include &lt;vector&gt;</code><br />
 </div>
 <p><a href="make_monotone_8hpp_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_compare_vertices.html">CompareVertices</a></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_event_point.html">EventPoint</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:aa7041fa59bd830295ea894033d213d8a"><td class="memItemLeft" align="right" valign="top"><a id="aa7041fa59bd830295ea894033d213d8a"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>makeMonotone</b> (<a class="el" href="class_d_c_e_l.html">DCEL</a> &amp;dcel)</td></tr>
-<tr class="separator:aa7041fa59bd830295ea894033d213d8a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a31a4c0ba0613e4dee1f5892f6ea2c365"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_d_c_e_l.html">DCEL</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="make_monotone_8hpp.html#a31a4c0ba0613e4dee1f5892f6ea2c365">makeMonotone</a> (<a class="el" href="class_d_c_e_l.html">DCEL</a> &amp;dcel)</td></tr>
+<tr class="separator:a31a4c0ba0613e4dee1f5892f6ea2c365"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2b300be047af16782768d65a78222659"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_c_e_l_8hpp.html#afa099a55c5746eff5a0e1ffc04f53cc0">VertexType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="make_monotone_8hpp.html#a2b300be047af16782768d65a78222659">getVertexType</a> (<a class="el" href="struct_event_point.html">EventPoint</a> &amp;event_point, <a class="el" href="class_d_c_e_l.html">DCEL</a> &amp;dcel)</td></tr>
+<tr class="separator:a2b300be047af16782768d65a78222659"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af112099ea7ad5396c973e94d7191adc6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="make_monotone_8hpp.html#af112099ea7ad5396c973e94d7191adc6">handleStartVertex</a> (<a class="el" href="struct_event_point.html">EventPoint</a> &amp;event_point, <a class="el" href="class_d_c_e_l.html">DCEL</a> &amp;dcel, std::set&lt; std::pair&lt; <a class="el" href="class_edge.html">Edge</a> *, int &gt;, <a class="el" href="class_compare_edges.html">CompareEdges</a> &gt; &amp;binary_search_tree, std::vector&lt; int &gt; &amp;helper)</td></tr>
+<tr class="separator:af112099ea7ad5396c973e94d7191adc6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0d48cf89729f91f8986ba2f13a004f5a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="make_monotone_8hpp.html#a0d48cf89729f91f8986ba2f13a004f5a">handleEndVertex</a> (<a class="el" href="struct_event_point.html">EventPoint</a> &amp;event_point, <a class="el" href="class_d_c_e_l.html">DCEL</a> &amp;dcel, std::set&lt; std::pair&lt; <a class="el" href="class_edge.html">Edge</a> *, int &gt;, <a class="el" href="class_compare_edges.html">CompareEdges</a> &gt; &amp;binary_search_tree, std::vector&lt; int &gt; &amp;helper, std::vector&lt; std::pair&lt; int, int &gt;&gt; &amp;diagonals)</td></tr>
+<tr class="separator:a0d48cf89729f91f8986ba2f13a004f5a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab1b29c0911891d828715269b609708a2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="make_monotone_8hpp.html#ab1b29c0911891d828715269b609708a2">handleSplitVertex</a> (<a class="el" href="struct_event_point.html">EventPoint</a> &amp;event_point, <a class="el" href="class_d_c_e_l.html">DCEL</a> &amp;dcel, std::set&lt; std::pair&lt; <a class="el" href="class_edge.html">Edge</a> *, int &gt;, <a class="el" href="class_compare_edges.html">CompareEdges</a> &gt; &amp;binary_search_tree, std::vector&lt; int &gt; &amp;helper, std::vector&lt; std::pair&lt; int, int &gt;&gt; &amp;diagonals)</td></tr>
+<tr class="separator:ab1b29c0911891d828715269b609708a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab089ddec12e147dc0006d661e12f9b7b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="make_monotone_8hpp.html#ab089ddec12e147dc0006d661e12f9b7b">handleMergeVertex</a> (<a class="el" href="struct_event_point.html">EventPoint</a> &amp;event_point, <a class="el" href="class_d_c_e_l.html">DCEL</a> &amp;dcel, std::set&lt; std::pair&lt; <a class="el" href="class_edge.html">Edge</a> *, int &gt;, <a class="el" href="class_compare_edges.html">CompareEdges</a> &gt; &amp;binary_search_tree, std::vector&lt; int &gt; &amp;helper, std::vector&lt; std::pair&lt; int, int &gt;&gt; &amp;diagonals)</td></tr>
+<tr class="separator:ab089ddec12e147dc0006d661e12f9b7b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a96c2e2018d61c16494c663f34fc38891"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="make_monotone_8hpp.html#a96c2e2018d61c16494c663f34fc38891">handleRegularVertex</a> (<a class="el" href="struct_event_point.html">EventPoint</a> &amp;event_point, <a class="el" href="class_d_c_e_l.html">DCEL</a> &amp;dcel, std::set&lt; std::pair&lt; <a class="el" href="class_edge.html">Edge</a> *, int &gt;, <a class="el" href="class_compare_edges.html">CompareEdges</a> &gt; &amp;binary_search_tree, std::vector&lt; int &gt; &amp;helper, std::vector&lt; std::pair&lt; int, int &gt;&gt; &amp;diagonals)</td></tr>
+<tr class="separator:a96c2e2018d61c16494c663f34fc38891"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3d14ba8036541d0d967e50d867edb831"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="make_monotone_8hpp.html#a3d14ba8036541d0d967e50d867edb831">handleVertex</a> (<a class="el" href="struct_event_point.html">EventPoint</a> &amp;event_point, <a class="el" href="class_d_c_e_l.html">DCEL</a> &amp;dcel, std::set&lt; std::pair&lt; <a class="el" href="class_edge.html">Edge</a> *, int &gt;, <a class="el" href="class_compare_edges.html">CompareEdges</a> &gt; &amp;binary_search_tree, std::vector&lt; int &gt; &amp;helper, std::vector&lt; std::pair&lt; int, int &gt;&gt; &amp;diagonals)</td></tr>
+<tr class="separator:a3d14ba8036541d0d967e50d867edb831"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Function Documentation</h2>
+<a id="a2b300be047af16782768d65a78222659"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2b300be047af16782768d65a78222659">&#9670;&nbsp;</a></span>getVertexType()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_c_e_l_8hpp.html#afa099a55c5746eff5a0e1ffc04f53cc0">VertexType</a> getVertexType </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_event_point.html">EventPoint</a> &amp;&#160;</td>
+          <td class="paramname"><em>event_point</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_d_c_e_l.html">DCEL</a> &amp;&#160;</td>
+          <td class="paramname"><em>dcel</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>A function that returns the type of an event point, i.e. Split, End, etc. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">event_point</td><td>the event point </td></tr>
+    <tr><td class="paramname">dcel</td><td><a class="el" href="class_d_c_e_l.html">DCEL</a> of the polygon to which the vertex belongs</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A value of enum type VertexType which denotes the type of the vertex </dd></dl>
+
+</div>
+</div>
+<a id="a0d48cf89729f91f8986ba2f13a004f5a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0d48cf89729f91f8986ba2f13a004f5a">&#9670;&nbsp;</a></span>handleEndVertex()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void handleEndVertex </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_event_point.html">EventPoint</a> &amp;&#160;</td>
+          <td class="paramname"><em>event_point</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_d_c_e_l.html">DCEL</a> &amp;&#160;</td>
+          <td class="paramname"><em>dcel</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::set&lt; std::pair&lt; <a class="el" href="class_edge.html">Edge</a> *, int &gt;, <a class="el" href="class_compare_edges.html">CompareEdges</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>binary_search_tree</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::vector&lt; int &gt; &amp;&#160;</td>
+          <td class="paramname"><em>helper</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::vector&lt; std::pair&lt; int, int &gt;&gt; &amp;&#160;</td>
+          <td class="paramname"><em>diagonals</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>A function to handle END Vertices of polygon </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">event_point</td><td>the event point </td></tr>
+    <tr><td class="paramname">dcel</td><td><a class="el" href="class_d_c_e_l.html">DCEL</a> of the polygon to which the vertex belongs </td></tr>
+    <tr><td class="paramname">binary_search_tree</td><td>A BST containing the edges. </td></tr>
+    <tr><td class="paramname">helper</td><td>A vector which stores the helper of edges using their indices. </td></tr>
+    <tr><td class="paramname">diagonals</td><td>A vector of diagonals to which new diagonals are added. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ab089ddec12e147dc0006d661e12f9b7b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab089ddec12e147dc0006d661e12f9b7b">&#9670;&nbsp;</a></span>handleMergeVertex()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void handleMergeVertex </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_event_point.html">EventPoint</a> &amp;&#160;</td>
+          <td class="paramname"><em>event_point</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_d_c_e_l.html">DCEL</a> &amp;&#160;</td>
+          <td class="paramname"><em>dcel</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::set&lt; std::pair&lt; <a class="el" href="class_edge.html">Edge</a> *, int &gt;, <a class="el" href="class_compare_edges.html">CompareEdges</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>binary_search_tree</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::vector&lt; int &gt; &amp;&#160;</td>
+          <td class="paramname"><em>helper</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::vector&lt; std::pair&lt; int, int &gt;&gt; &amp;&#160;</td>
+          <td class="paramname"><em>diagonals</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>A function to handle MERGE Vertices of polygon </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">event_point</td><td>the event point </td></tr>
+    <tr><td class="paramname">dcel</td><td><a class="el" href="class_d_c_e_l.html">DCEL</a> of the polygon to which the vertex belongs </td></tr>
+    <tr><td class="paramname">binary_search_tree</td><td>A BST containing the edges. </td></tr>
+    <tr><td class="paramname">helper</td><td>A vector which stores the helper of edges using their indices. </td></tr>
+    <tr><td class="paramname">diagonals</td><td>A vector of diagonals to which new diagonals are added. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a96c2e2018d61c16494c663f34fc38891"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a96c2e2018d61c16494c663f34fc38891">&#9670;&nbsp;</a></span>handleRegularVertex()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void handleRegularVertex </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_event_point.html">EventPoint</a> &amp;&#160;</td>
+          <td class="paramname"><em>event_point</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_d_c_e_l.html">DCEL</a> &amp;&#160;</td>
+          <td class="paramname"><em>dcel</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::set&lt; std::pair&lt; <a class="el" href="class_edge.html">Edge</a> *, int &gt;, <a class="el" href="class_compare_edges.html">CompareEdges</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>binary_search_tree</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::vector&lt; int &gt; &amp;&#160;</td>
+          <td class="paramname"><em>helper</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::vector&lt; std::pair&lt; int, int &gt;&gt; &amp;&#160;</td>
+          <td class="paramname"><em>diagonals</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>A function to handle REGULAR Vertices of polygon </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">event_point</td><td>the event point </td></tr>
+    <tr><td class="paramname">dcel</td><td><a class="el" href="class_d_c_e_l.html">DCEL</a> of the polygon to which the vertex belongs </td></tr>
+    <tr><td class="paramname">binary_search_tree</td><td>A BST containing the edges. </td></tr>
+    <tr><td class="paramname">helper</td><td>A vector which stores the helper of edges using their indices. </td></tr>
+    <tr><td class="paramname">diagonals</td><td>A vector of diagonals to which new diagonals are added. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ab1b29c0911891d828715269b609708a2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab1b29c0911891d828715269b609708a2">&#9670;&nbsp;</a></span>handleSplitVertex()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void handleSplitVertex </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_event_point.html">EventPoint</a> &amp;&#160;</td>
+          <td class="paramname"><em>event_point</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_d_c_e_l.html">DCEL</a> &amp;&#160;</td>
+          <td class="paramname"><em>dcel</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::set&lt; std::pair&lt; <a class="el" href="class_edge.html">Edge</a> *, int &gt;, <a class="el" href="class_compare_edges.html">CompareEdges</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>binary_search_tree</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::vector&lt; int &gt; &amp;&#160;</td>
+          <td class="paramname"><em>helper</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::vector&lt; std::pair&lt; int, int &gt;&gt; &amp;&#160;</td>
+          <td class="paramname"><em>diagonals</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>A function to handle SPLIT Vertices of polygon </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">event_point</td><td>the event point </td></tr>
+    <tr><td class="paramname">dcel</td><td><a class="el" href="class_d_c_e_l.html">DCEL</a> of the polygon to which the vertex belongs </td></tr>
+    <tr><td class="paramname">binary_search_tree</td><td>A BST containing the edges. </td></tr>
+    <tr><td class="paramname">helper</td><td>A vector which stores the helper of edges using their indices. </td></tr>
+    <tr><td class="paramname">diagonals</td><td>A vector of diagonals to which new diagonals are added. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="af112099ea7ad5396c973e94d7191adc6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af112099ea7ad5396c973e94d7191adc6">&#9670;&nbsp;</a></span>handleStartVertex()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void handleStartVertex </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_event_point.html">EventPoint</a> &amp;&#160;</td>
+          <td class="paramname"><em>event_point</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_d_c_e_l.html">DCEL</a> &amp;&#160;</td>
+          <td class="paramname"><em>dcel</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::set&lt; std::pair&lt; <a class="el" href="class_edge.html">Edge</a> *, int &gt;, <a class="el" href="class_compare_edges.html">CompareEdges</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>binary_search_tree</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::vector&lt; int &gt; &amp;&#160;</td>
+          <td class="paramname"><em>helper</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>A function to handle START Vertices of polygon </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">event_point</td><td>the event point </td></tr>
+    <tr><td class="paramname">dcel</td><td><a class="el" href="class_d_c_e_l.html">DCEL</a> of the polygon to which the vertex belongs </td></tr>
+    <tr><td class="paramname">binary_search_tree</td><td>A BST containing the edges. </td></tr>
+    <tr><td class="paramname">helper</td><td>A vector which stores the helper of edges using their indices. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a3d14ba8036541d0d967e50d867edb831"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3d14ba8036541d0d967e50d867edb831">&#9670;&nbsp;</a></span>handleVertex()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void handleVertex </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_event_point.html">EventPoint</a> &amp;&#160;</td>
+          <td class="paramname"><em>event_point</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_d_c_e_l.html">DCEL</a> &amp;&#160;</td>
+          <td class="paramname"><em>dcel</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::set&lt; std::pair&lt; <a class="el" href="class_edge.html">Edge</a> *, int &gt;, <a class="el" href="class_compare_edges.html">CompareEdges</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>binary_search_tree</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::vector&lt; int &gt; &amp;&#160;</td>
+          <td class="paramname"><em>helper</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::vector&lt; std::pair&lt; int, int &gt;&gt; &amp;&#160;</td>
+          <td class="paramname"><em>diagonals</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>A function to handle Vertices of polygon </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">event_point</td><td>the event point </td></tr>
+    <tr><td class="paramname">dcel</td><td><a class="el" href="class_d_c_e_l.html">DCEL</a> of the polygon to which the vertex belongs </td></tr>
+    <tr><td class="paramname">binary_search_tree</td><td>A BST containing the edges. </td></tr>
+    <tr><td class="paramname">helper</td><td>A vector which stores the helper of edges using their indices. </td></tr>
+    <tr><td class="paramname">diagonals</td><td>A vector of diagonals to which new diagonals are added. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a31a4c0ba0613e4dee1f5892f6ea2c365"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a31a4c0ba0613e4dee1f5892f6ea2c365">&#9670;&nbsp;</a></span>makeMonotone()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_d_c_e_l.html">DCEL</a> makeMonotone </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_d_c_e_l.html">DCEL</a> &amp;&#160;</td>
+          <td class="paramname"><em>dcel</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Takes the <a class="el" href="class_d_c_e_l.html">DCEL</a> of a polygon and returns a <a class="el" href="class_d_c_e_l.html">DCEL</a> of its monotone partitioning </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dcel</td><td><a class="el" href="class_d_c_e_l.html">DCEL</a> of the polygon (passed by reference) </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="class_d_c_e_l.html">DCEL</a> of monotone partitioning of polygon </dd></dl>
+
+</div>
+</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

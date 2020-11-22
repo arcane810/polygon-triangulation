@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['addedge_35',['addEdge',['../class_d_c_e_l.html#af7c1a16ddc3e9f39fdf2390c16a7778f',1,'DCEL']]]
+  ['counterclockwise_67',['counterClockwise',['../class_point.html#a0cf123214a96fce04501b0ecfa684382',1,'Point::counterClockwise()'],['../utils_8cpp.html#a0cf123214a96fce04501b0ecfa684382',1,'counterClockwise(Point p1, Point p2, Point p3):&#160;utils.cpp'],['../utils_8hpp.html#a0cf123214a96fce04501b0ecfa684382',1,'counterClockwise(Point p1, Point p2, Point p3):&#160;utils.cpp']]]
 ];

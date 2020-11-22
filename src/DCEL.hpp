@@ -32,6 +32,7 @@ class Vertex {
     /// Incident HalfEdge (any half edge that originates from this vertex)
     HalfEdge *half_edge;
 
+    /// Index of vertex in the DCEL table
     int index;
 
     /**
@@ -58,12 +59,14 @@ class HalfEdge {
     HalfEdge *twin;
     /// Pointer to the next half edge
     HalfEdge *next;
-    /// Pointer to previous hald edge
+    /// Pointer to previous half edge
     HalfEdge *prev;
     /// Edge to which HalfEdge belongs
     Edge *edge;
 
+    /// Index of the HalfEdge in DCEL table
     int index;
+
     /**
      * Default Constructor
      */
@@ -82,8 +85,9 @@ class HalfEdge {
  */
 class Edge {
   public:
-    /// Pointer to the origin vertex of the half edge
+    /// Pointer to the vertices that the edge connects
     Vertex *v1, *v2;
+
     /// Pointer to one of the half edges
     HalfEdge *half_edge;
 
@@ -145,10 +149,11 @@ class DCEL {
      */
     DCEL(std::vector<Point> points);
 
-    DCEL();
-
     /**
+     * Constructor. Makes DCEL from set of points and edges
      *
+     * @param points List of points of a polygon
+     * @param edges List of edges of form pair<1st vertex, 2nd vertex>
      */
     DCEL(std::vector<Point> points, std::vector<std::pair<int, int>> edges);
 };

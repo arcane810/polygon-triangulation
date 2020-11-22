@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['face_37',['Face',['../class_face.html#afdb634bc2d5287ba0d62e46b57e9dc2e',1,'Face::Face()'],['../class_face.html#a0bc80ccfdc892c099e7d83e835e6722e',1,'Face::Face(HalfEdge *edge)']]]
+  ['edge_69',['Edge',['../class_edge.html#a3106b11d60125009dbf7a738ce540fdf',1,'Edge::Edge()'],['../class_edge.html#af0804feecd2f23b5db8a36363317a171',1,'Edge::Edge(Vertex *v1, Vertex *v2, HalfEdge *half_edge)']]]
 ];

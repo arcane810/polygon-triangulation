@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['vertices_49',['vertices',['../class_d_c_e_l.html#a67a78aabf24d7f35f69be7e933e9cf90',1,'DCEL']]]
+  ['twin_96',['twin',['../class_half_edge.html#a37e7696a7131767a0c76e45ed69be4c5',1,'HalfEdge']]]
 ];

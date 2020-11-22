@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.20"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Convex Hull Algorithms: HalfEdge Class Reference</title>
+<title>Polygon Triangulation: HalfEdge Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -21,7 +21,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">Convex Hull Algorithms
+   <div id="projectname">Polygon Triangulation
    </div>
   </td>
  </tr>
@@ -95,8 +95,16 @@ Public Attributes</h2></td></tr>
 <tr class="separator:a5918db069bb8b4a89e471c01a14fc6e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a02bbf630ad01fd4d7bf4af38e286844e"><td class="memItemLeft" align="right" valign="top"><a id="a02bbf630ad01fd4d7bf4af38e286844e"></a>
 <a class="el" href="class_half_edge.html">HalfEdge</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_half_edge.html#a02bbf630ad01fd4d7bf4af38e286844e">prev</a></td></tr>
-<tr class="memdesc:a02bbf630ad01fd4d7bf4af38e286844e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to previous hald edge. <br /></td></tr>
+<tr class="memdesc:a02bbf630ad01fd4d7bf4af38e286844e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to previous half edge. <br /></td></tr>
 <tr class="separator:a02bbf630ad01fd4d7bf4af38e286844e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab6093e78646e0a80c94c0a17858484d4"><td class="memItemLeft" align="right" valign="top"><a id="ab6093e78646e0a80c94c0a17858484d4"></a>
+<a class="el" href="class_edge.html">Edge</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_half_edge.html#ab6093e78646e0a80c94c0a17858484d4">edge</a></td></tr>
+<tr class="memdesc:ab6093e78646e0a80c94c0a17858484d4"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="class_edge.html">Edge</a> to which <a class="el" href="class_half_edge.html">HalfEdge</a> belongs. <br /></td></tr>
+<tr class="separator:ab6093e78646e0a80c94c0a17858484d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0356a514b584b76bc37b8486f1995d01"><td class="memItemLeft" align="right" valign="top"><a id="a0356a514b584b76bc37b8486f1995d01"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_half_edge.html#a0356a514b584b76bc37b8486f1995d01">index</a></td></tr>
+<tr class="memdesc:a0356a514b584b76bc37b8486f1995d01"><td class="mdescLeft">&#160;</td><td class="mdescRight">Index of the <a class="el" href="class_half_edge.html">HalfEdge</a> in <a class="el" href="class_d_c_e_l.html">DCEL</a> table. <br /></td></tr>
+<tr class="separator:a0356a514b584b76bc37b8486f1995d01"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Half-Edge Class for <a class="el" href="class_d_c_e_l.html">DCEL</a> </p>

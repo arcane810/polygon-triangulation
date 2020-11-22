@@ -1,3 +1,5 @@
+/** @file */
+
 #include "monotoneTriangulation.hpp"
 #include <algorithm>
 #include <iostream>

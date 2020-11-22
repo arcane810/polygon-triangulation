@@ -9,19 +9,19 @@ using namespace std;
 Face::Face(HalfEdge *half_edge) : half_edge(half_edge) {}
 
 Face::Face() {}
-DCEL::DCEL() {}
 
 Vertex::Vertex() {}
 
 Edge::Edge() {}
+
+Edge::Edge(Vertex *v1, Vertex *v2, HalfEdge *half_edge)
+    : v1(v1), v2(v2), half_edge(half_edge) {}
+
 HalfEdge::HalfEdge() {}
 
 Vertex::Vertex(Point p) : point(p) {}
 
 HalfEdge::HalfEdge(Vertex *origin) : origin(origin) {}
-
-Edge::Edge(Vertex *v1, Vertex *v2, HalfEdge *half_edge)
-    : v1(v1), v2(v2), half_edge(half_edge) {}
 
 DCEL::DCEL(std::vector<Point> points) {
     Face outer = Face();
@@ -63,6 +63,12 @@ DCEL::DCEL(std::vector<Point> points) {
     faces[1].half_edge = &half_edges[n];
 }
 
+/**
+ * Gets the angle made by vector and x axis in counterclockwise direction
+ * @param x component of vector along x
+ * @param y component of vector along y
+ * @return angle in range [0, 2*pi]
+ */
 long double getAngle(long double x, long double y) {
     if (y > 0) {
         return acos(x / (sqrt(x * x + y * y)));
@@ -127,10 +133,6 @@ DCEL::DCEL(std::vector<Point> points,
         }
     }
     vector<bool> done(2 * m, 0);
-    // for (int i = 0; i < 2 * m; i++) {
-    //     std::cout << "Edge: " << i << " Prev: " << half_edges[i].prev->index
-    //               << " Next: " << half_edges[i].next->index << std::endl;
-    // }
     for (int i = 0; i < 2 * m; i++) {
         if (done[i])
             continue;
